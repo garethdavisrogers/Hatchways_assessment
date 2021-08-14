@@ -1,0 +1,50 @@
+body {
+  margin: auto;
+  padding: 5vh;
+  font-family: "Raleway", sans-serif;
+}
+
+.student-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.student-card {
+  padding: 2vh;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1vw;
+  justify-content: flex-start;
+  border-bottom: 1px solid gray;
+}
+
+.student-picture {
+  width: 25vw;
+  display: flex;
+  align-self: center;
+  align-items: center;
+}
+
+.student-img {
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 15vw;
+  height: auto;
+  image-rendering: auto;
+}
+
+.student-name {
+  font-weight: 900;
+  font-size: 7vh;
+}
+
+.student-datum {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1vh;
+  color: gray;
+  font-size: 2vh;
+  padding-left: 2vw;
+}
