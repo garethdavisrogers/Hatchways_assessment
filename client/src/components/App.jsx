@@ -16,15 +16,13 @@ class App extends React.Component {
   handleGetFields = (e) => {
     const { search, students } = this.state;
     this.setState({ search: e.target.value });
-    if (search === "") {
+    if (search === null) {
       this.setState({ filterStudents: students });
     } else {
       let filter = [];
       students.forEach((student) => {
-        if (
-          student.firstName.toLowerCase().includes(search) ||
-          student.lastName.toLowerCase().includes(search)
-        ) {
+        const caseIns = new RegExp(search, "i");
+        if (caseIns.test(student.firstName) || caseIns.test(student.lastName)) {
           filter.push(student);
         }
       });
@@ -52,6 +50,7 @@ class App extends React.Component {
       <div>
         <div className="search-container">
           <input
+            className="search-bar"
             type="text"
             placeholder="Search by name"
             onChange={this.handleGetFields}
