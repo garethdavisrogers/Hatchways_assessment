@@ -18,7 +18,6 @@ class App extends React.Component {
 
   handleGetFields(e) {
     const { searchByName, searchByTag, students } = this.state;
-    debugger;
     if (searchByName && searchByName.length === 0) {
       this.setState({ searchByName: null });
     }
@@ -43,7 +42,6 @@ class App extends React.Component {
       });
       this.setState({ filterStudents: filter });
     } else if (e.target.name === "search-by-tag" && e.target.value.length > 0) {
-      debugger;
       this.setState({ searchByTag: e.target.value });
       const caseIns = new RegExp(searchByTag, "i");
       students.forEach((student) => {

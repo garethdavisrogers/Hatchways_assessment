@@ -87,7 +87,7 @@ input {
 }
 
 .grade-container {
-  margin-left: 23vw;
+  margin-left: 27vw;
   width: 60wv;
   display: flex;
   flex-direction: column;
@@ -100,13 +100,25 @@ input {
   width: 18vw;
   justify-content: flex-end;
 }
+.tag-input {
+  width: 18vw;
+  height: 5vh;
+  font-size: 3vh;
+  margin-left: 4vw;
+  padding-left: 1px;
+}
 
 .tag-container {
-  height: 5vh;
+  display: flex;
+  gap: 1vh;
+  padding-bottom: 2vh;
+  margin-left: 4vw;
 }
 
 .tag {
-  background-color: gray;
-  color: white;
+  background-color: lightgray;
   border-radius: 5px;
+  padding: 1vh;
+  font-size: 3vh;
+  font-weight: 300;
 }
