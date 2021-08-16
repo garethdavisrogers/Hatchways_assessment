@@ -18,6 +18,7 @@ class App extends React.Component {
 
   handleGetFields(e) {
     const { searchByName, searchByTag, students } = this.state;
+    debugger;
     if (searchByName && searchByName.length === 0) {
       this.setState({ searchByName: null });
     }
@@ -25,24 +26,28 @@ class App extends React.Component {
       this.setState({ searchByTag: null });
     }
     const filter = [];
-    if (searchByName === null || searchByTag === null) {
+    if (
+      searchByName === null &&
+      searchByTag === null &&
+      e.target.value.length === 0
+    ) {
       this.setState({ filterStudents: students });
     }
-    if (e.target.name === "search-by-name") {
+    if (e.target.name === "search-by-name" && e.target.value.length > 0) {
       this.setState({ searchByName: e.target.value });
       students.forEach((student) => {
-        let caseIns = new RegExp(searchByName, "i");
+        let caseIns = new RegExp(e.target.value, "i");
         if (caseIns.test(student.firstName) || caseIns.test(student.lastName)) {
           filter.push(student);
         }
       });
       this.setState({ filterStudents: filter });
-    }
-    if (e.target.name === "search-by-tag") {
+    } else if (e.target.name === "search-by-tag" && e.target.value.length > 0) {
+      debugger;
       this.setState({ searchByTag: e.target.value });
+      const caseIns = new RegExp(searchByTag, "i");
       students.forEach((student) => {
-        let caseIns = new RegExp(searchByTag, "i");
-        if (student.tags !== undefined) {
+        if (student.tags[0]) {
           for (let tag of student.tags) {
             if (caseIns.test(tag)) {
               filter.push(student);
@@ -51,6 +56,8 @@ class App extends React.Component {
         }
       });
       this.setState({ filterStudents: filter });
+    } else {
+      this.setState({ filterStudents: students });
     }
   }
 
@@ -75,10 +82,6 @@ class App extends React.Component {
       .catch((err) => {
         console.error(err);
       });
-  }
-
-  componentDidUpdate() {
-    console.log("updated");
   }
 
   render() {
