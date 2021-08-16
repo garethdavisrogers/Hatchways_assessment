@@ -9,43 +9,80 @@ class App extends React.Component {
     this.state = {
       students: null,
       filterStudents: null,
-      search: null,
+      searchByName: null,
+      searchByTag: null,
     };
+
+    this.handleGetFields = this.handleGetFields.bind(this);
   }
 
-  handleGetFields = (e) => {
-    const { search, students } = this.state;
-    this.setState({ search: e.target.value });
-    if (search === null) {
+  handleGetFields(e) {
+    const { searchByName, searchByTag, students } = this.state;
+    if (searchByName && searchByName.length === 0) {
+      this.setState({ searchByName: null });
+    }
+    if (searchByTag && searchByTag.length === 0) {
+      this.setState({ searchByTag: null });
+    }
+    const filter = [];
+    if (searchByName === null || searchByTag === null) {
       this.setState({ filterStudents: students });
-    } else {
-      let filter = [];
+    }
+    if (e.target.name === "search-by-name") {
+      this.setState({ searchByName: e.target.value });
       students.forEach((student) => {
-        const caseIns = new RegExp(search, "i");
+        let caseIns = new RegExp(searchByName, "i");
         if (caseIns.test(student.firstName) || caseIns.test(student.lastName)) {
           filter.push(student);
         }
       });
       this.setState({ filterStudents: filter });
     }
+    if (e.target.name === "search-by-tag") {
+      this.setState({ searchByTag: e.target.value });
+      students.forEach((student) => {
+        let caseIns = new RegExp(searchByTag, "i");
+        if (student.tags !== undefined) {
+          for (let tag of student.tags) {
+            if (caseIns.test(tag)) {
+              filter.push(student);
+            }
+          }
+        }
+      });
+      this.setState({ filterStudents: filter });
+    }
+  }
+
+  addTag = (tag, ind) => {
+    const { students } = this.state;
+    students[ind - 1].tags.push(tag);
   };
 
   componentDidMount() {
     axios
       .get("https://api.hatchways.io/assessment/students")
-      .then((response) =>
+      .then((response) => {
+        let res = response.data.students;
+        res.forEach((r) => {
+          r.tags = [];
+        });
         this.setState({
-          students: response.data.students,
-          filterStudents: response.data.students,
-        })
-      )
+          students: res,
+          filterStudents: res,
+        });
+      })
       .catch((err) => {
         console.error(err);
       });
   }
 
+  componentDidUpdate() {
+    console.log("updated");
+  }
+
   render() {
-    const { students, search, filterStudents } = this.state;
+    const { students, searchByName, filterStudents } = this.state;
     return (
       <div>
         <div className="search-container">
@@ -53,11 +90,19 @@ class App extends React.Component {
             className="search-bar"
             type="text"
             placeholder="Search by name"
+            name="search-by-name"
+            onChange={this.handleGetFields}
+          ></input>
+          <input
+            className="search-bar"
+            type="text"
+            placeholder="Search by tag"
+            name="search-by-tag"
             onChange={this.handleGetFields}
           ></input>
         </div>
         {filterStudents !== null && (
-          <Students search={search} filterStudents={filterStudents} />
+          <Students filterStudents={filterStudents} addTag={this.addTag} />
         )}
       </div>
     );
