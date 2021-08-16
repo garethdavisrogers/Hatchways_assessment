@@ -29,6 +29,7 @@ body {
   flex-direction: column;
   border-bottom: 1px solid gray;
   padding-top: 3vh;
+  padding-bottom: 3vh;
 }
 
 .student-card {
@@ -37,14 +38,13 @@ body {
   display: flex;
   flex-wrap: nowrap;
   gap: 1vw;
-  justify-content: flex-start;
+  justify-content: flex-end;
 }
 
 .student-picture {
   display: flex;
   align-self: left;
   align-items: center;
-  padding-left: 2vw;
   padding-right: 2vw;
 }
 
@@ -68,13 +68,13 @@ body {
 .expand-button {
   display: flex;
   justify-content: flex-end;
-  width: 30vw;
+  width: 10vw;
 }
 
 .student-info {
   display: flex;
   flex-direction: column;
-  max-width: 45vw;
+  width: 60vw;
 }
 
 .student-datum {
@@ -85,11 +85,12 @@ body {
   font-weight: 200;
   padding-left: 4vw;
   padding-bottom: 1vh;
-  max-width: fit-content;
+  width: 50vw;
 }
 
 .grade-container {
   margin-left: 23vw;
+  width: 60wv;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -97,6 +98,7 @@ body {
 
 .percent {
   display: flex;
-  width: 8vw;
+  flex-wrap: nowrap;
+  width: 18vw;
   justify-content: flex-end;
 }
