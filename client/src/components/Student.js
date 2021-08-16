@@ -32,9 +32,9 @@ const Student = ({ student }) => {
         </div>
         <div className="expand-button">
           {!isExpanded ? (
-            <HiPlusSm onClick={expand} size="2x" />
+            <HiPlusSm onClick={expand} size="100px" />
           ) : (
-            <HiMinusSm onClick={expand} size="2x" />
+            <HiMinusSm onClick={expand} size="100px" />
           )}
         </div>
       </div>

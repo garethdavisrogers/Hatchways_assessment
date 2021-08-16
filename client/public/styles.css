@@ -11,8 +11,9 @@ body {
 .search-bar {
   width: 100%;
   height: 10vh;
-  font-size: 3vh;
-  padding-left: 1vw;
+  font-size: 4vh;
+  font-family: "Raleway", sans-serif;
+  padding-left: 2vw;
   border: none;
   border-bottom: 1px solid black;
 }
@@ -50,7 +51,7 @@ body {
 .student-img {
   border-radius: 50%;
   border: 2px solid gray;
-  width: 20vw;
+  width: 16vw;
   height: auto;
   image-rendering: smooth;
 }
@@ -59,35 +60,43 @@ body {
   display: flex;
   flex-wrap: nowrap;
   font-weight: bolder;
-  font-size: 7vh;
+  font-size: 6vh;
   padding: 1vh;
   max-width: 45vw;
 }
 
 .expand-button {
-  position: relative;
-  margin-left: 22vw;
-  transform: translateY(-100px);
+  display: flex;
+  justify-content: flex-end;
+  width: 30vw;
 }
 
 .student-info {
   display: flex;
   flex-direction: column;
-  max-width: 40vw;
+  max-width: 45vw;
 }
 
 .student-datum {
   display: flex;
   flex-wrap: nowrap;
   color: gray;
-  font-size: 2vh;
-  font-weight: lighter;
-  padding-left: 5vw;
+  font-size: 3vh;
+  font-weight: 200;
+  padding-left: 4vw;
+  padding-bottom: 1vh;
   max-width: fit-content;
 }
 
 .grade-container {
+  margin-left: 23vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.percent {
+  display: flex;
+  width: 8vw;
+  justify-content: flex-end;
 }

@@ -5,7 +5,8 @@ const Tests = ({ tests }) => {
     <div className="grade-container">
       {tests.map((test, index) => (
         <div className="student-datum" key={index}>
-          Test {index + 1}: {test} %
+          <div>Test {index + 1} : </div>
+          <div className="percent"> {test} %</div>
         </div>
       ))}
     </div>
