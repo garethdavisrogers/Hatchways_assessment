@@ -101,9 +101,9 @@ input {
   justify-content: flex-end;
 }
 .tag-input {
-  width: 18vw;
+  width: 22vw;
   height: 5vh;
-  font-size: 3vh;
+  font-size: 2vh;
   margin-left: 4vw;
   padding-left: 1px;
 }

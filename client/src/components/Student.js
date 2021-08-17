@@ -29,7 +29,7 @@ const Student = ({ student, addTag }) => {
     }
   };
   return (
-    <div className="student-component">
+    <div className="student-component" role="student-component">
       <div className="student-card">
         <div className="student-picture">
           <img className="student-img" src={student.pic} />
@@ -64,9 +64,17 @@ const Student = ({ student, addTag }) => {
         </div>
         <div className="expand-button">
           {!isExpanded ? (
-            <HiPlusSm onClick={expand} size="100px" />
+            <HiPlusSm
+              onClick={expand}
+              size="100px"
+              data-testid="expand-button"
+            />
           ) : (
-            <HiMinusSm onClick={expand} size="100px" />
+            <HiMinusSm
+              onClick={expand}
+              size="100px"
+              data-testid="contract-button"
+            />
           )}
         </div>
       </div>

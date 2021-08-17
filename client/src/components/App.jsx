@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Students from "./Students";
+import { ToastContainer, toast } from "react-toastify";
 
 class App extends React.Component {
   constructor() {
@@ -41,6 +42,9 @@ class App extends React.Component {
         }
       });
       this.setState({ filterStudents: filter });
+      if (filter.length === 0) {
+        toast("We did not find anyone matching your search");
+      }
     } else if (e.target.name === "search-by-tag" && e.target.value.length > 0) {
       this.setState({ searchByTag: e.target.value });
       const caseIns = new RegExp(searchByTag, "i");
@@ -54,6 +58,9 @@ class App extends React.Component {
         }
       });
       this.setState({ filterStudents: filter });
+      if (filter.length === 0) {
+        toast("We did not find anyone matching your search");
+      }
     } else {
       this.setState({ filterStudents: students });
     }
@@ -92,6 +99,7 @@ class App extends React.Component {
             type="text"
             placeholder="Search by name"
             name="search-by-name"
+            role="search-by-name"
             onChange={this.handleGetFields}
           ></input>
           <input
@@ -99,9 +107,11 @@ class App extends React.Component {
             type="text"
             placeholder="Search by tag"
             name="search-by-tag"
+            role="search-by-tag"
             onChange={this.handleGetFields}
           ></input>
         </div>
+        <ToastContainer limit={1} />
         {filterStudents !== null && (
           <Students filterStudents={filterStudents} addTag={this.addTag} />
         )}
